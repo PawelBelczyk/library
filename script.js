@@ -8,11 +8,7 @@ function Book(title, author, pages, isRead) {
 }
 
 const myLibrary = [];
-
-function addBookToLibrary(title, author, pages, isRead) {
-const book = new Book(title, author, pages, isRead);
-myLibrary.push(book);
-}
+ 
 
 function renderLibrary() {
     const container = document.getElementById("library-container");
@@ -34,11 +30,7 @@ function renderLibrary() {
 
 }
 
-addBookToLibrary("Dune", "Frank Herbert", 600, false);
-addBookToLibrary("1984", "George Orwell", 300, true);
-addBookToLibrary("Red Rising", "Price Brown", 2000, true);
-addBookToLibrary("The Book of Secrets", "Osho", 800, true);
-renderLibrary();
+ 
 
 const dialog = document.getElementById("book-dialog");
 const openBtn = document.getElementById("open-dialog");
@@ -63,9 +55,33 @@ form.addEventListener("submit", (e) => {
   const isRead = document.getElementById("isRead").checked;
 
   addBookToLibrary(title, author, pages, isRead);
-
-  renderLibrary();
-
+ renderLibrary();
   form.reset();
   dialog.close();
 });
+
+function saveLibrary() {
+  localStorage.setItem("library", JSON.stringify(myLibrary));
+}
+
+function addBookToLibrary(title, author, pages, isRead) {
+  const book = new Book(title, author, pages, isRead);
+  myLibrary.push(book);
+
+  saveLibrary();
+}
+
+function loadLibrary() {
+  myLibrary.length = 0;
+
+  const savedBooks = localStorage.getItem("library");
+
+  if (!savedBooks) return;
+
+  const books = JSON.parse(savedBooks);
+
+  books.forEach((book) => myLibrary.push(book));
+}
+
+loadLibrary();
+renderLibrary();
