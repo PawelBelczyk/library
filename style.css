@@ -16,7 +16,7 @@ h1 {
 
 /* Przycisk */
 
-#add-book-btn {
+#open-dialog {
   display: block;
   margin: 0 auto 30px;
   padding: 12px 28px;
@@ -31,12 +31,12 @@ h1 {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-#add-book-btn:hover {
+#open-dialog:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
-#add-book-btn:active {
+#open-dialog:active {
   transform: translateY(0);
 }
 

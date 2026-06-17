@@ -13,7 +13,35 @@
 
     <div id="library-container">
     </div>
-       <button id="add-book-btn">➕ Add Book</button>
+  
+
+       <dialog id="book-dialog">
+        <form id="book-form"
+        <h2> Add new Book</h2>
+        <label>
+            Title:
+            <input type="text" id="title" required/>
+        </label>
+        <label>
+            Author:
+            <input type="text" id="author" required />
+        </label>
+        <label>
+        Pages:
+        <input type="number" id="pages" required />
+            </label>
+            <label>
+                Read:
+                <input type="checkbox" id="isRead" />
+            </label>
+            <div style ="margin-top: 10px;">
+                <button type="submit">Add Book</button>
+                <button type="button" id="close-dialog">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
+    <button id ="open-dialog">➕ Add Book</button>
 
 
         <script type="module" src="script.js" defer></script>

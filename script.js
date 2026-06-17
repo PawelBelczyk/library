@@ -36,5 +36,36 @@ function renderLibrary() {
 
 addBookToLibrary("Dune", "Frank Herbert", 600, false);
 addBookToLibrary("1984", "George Orwell", 300, true);
-
+addBookToLibrary("Red Rising", "Price Brown", 2000, true);
+addBookToLibrary("The Book of Secrets", "Osho", 800, true);
 renderLibrary();
+
+const dialog = document.getElementById("book-dialog");
+const openBtn = document.getElementById("open-dialog");
+const closeBtn = document.getElementById("close-dialog");
+
+openBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+closeBtn.addEventListener("click", () => {
+  dialog.close();
+});
+
+const form = document.getElementById("book-form");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const isRead = document.getElementById("isRead").checked;
+
+  addBookToLibrary(title, author, pages, isRead);
+
+  renderLibrary();
+
+  form.reset();
+  dialog.close();
+});
