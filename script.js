@@ -27,6 +27,10 @@ function renderLibrary() {
           <button class="delete-btn" data-id="${book.id}">
           Delete
           </button>
+
+            <button class="toggle-btn" data-id="${book.id}">
+            Toggle Read
+            </button>
         `;
         container.appendChild(card);
     });
@@ -83,7 +87,18 @@ function loadLibrary() {
 
   const books = JSON.parse(savedBooks);
 
-  books.forEach((book) => myLibrary.push(book));
+books.forEach((book) => {
+  const restoredBook = new Book(
+    book.title,
+    book.author,
+    book.pages,
+    book.isRead
+  );
+
+  restoredBook.id = book.id;
+
+  myLibrary.push(restoredBook);
+});
 }
 
 
@@ -108,9 +123,28 @@ document
 
       removeBook(id);
     }
+
+        if (e.target.classList.contains("toggle-btn")) {
+      toggleBookRead(e.target.dataset.id);
+    }
   });
 
 
-  
+  Book.prototype.toggleRead = function () {
+  this.isRead = !this.isRead;
+};
+
+
+function toggleBookRead(id) {
+  const book = myLibrary.find(book => book.id === id);
+
+  if (!book) return;
+
+  book.toggleRead();
+
+  saveLibrary();
+  renderLibrary();
+}
+
 loadLibrary();
 renderLibrary();
