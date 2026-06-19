@@ -24,6 +24,9 @@ function renderLibrary() {
         <p>${book.author}</p>
         <p>${book.pages} pages</p>
         <p>Status: ${book.isRead ? "READ": "Not Read"}</p>
+          <button class="delete-btn" data-id="${book.id}">
+          Delete
+          </button>
         `;
         container.appendChild(card);
     });
@@ -83,5 +86,31 @@ function loadLibrary() {
   books.forEach((book) => myLibrary.push(book));
 }
 
+
+function removeBook(id) {
+  const index = myLibrary.findIndex(book => book.id === id);
+
+  if (index !== -1) {
+    myLibrary.splice(index, 1);
+  }
+
+  saveLibrary();
+  renderLibrary();
+}
+
+
+document
+  .getElementById("library-container")
+  .addEventListener("click", (e) => {
+
+    if (e.target.classList.contains("delete-btn")) {
+      const id = e.target.dataset.id;
+
+      removeBook(id);
+    }
+  });
+
+
+  
 loadLibrary();
 renderLibrary();
