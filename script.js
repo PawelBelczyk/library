@@ -53,8 +53,16 @@ closeBtn.addEventListener("click", () => {
 
 const form = document.getElementById("book-form");
 
+ 
+
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+ 
+    if(!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
