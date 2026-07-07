@@ -83,8 +83,24 @@ authorInput.addEventListener("blur", () => {
     authorInput.setCustomValidity("");
   }
 });
+const pagesInput = document.getElementById("pages");
+pagesInput.addEventListener("blur", ()=> {
+  if(pagesInput.value < 0) {
+    pagesInput.setCustomValidity("Pages must be > 0");
+  }
+  else {
+    pagesInput.setCustomValidity("");
+  }
+});
 
-
+const titleInput = document.getElementById("title");
+titleInput.addEventListener("blur", ()=> {
+  if(titleInput.value.trim()==="") {
+    titleInput.setCustomValidity("Title must be filled");
+  } else {
+    titleInput.setCustomValidity("");
+  }
+});
 
 
 function saveLibrary() {
