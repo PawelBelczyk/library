@@ -83,6 +83,7 @@ authorInput.addEventListener("blur", () => {
     authorInput.setCustomValidity("");
   }
 });
+
 const pagesInput = document.getElementById("pages");
 pagesInput.addEventListener("blur", ()=> {
   if(Number(pagesInput.value) < 1) {
