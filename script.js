@@ -53,8 +53,6 @@ closeBtn.addEventListener("click", () => {
 
 const form = document.getElementById("book-form");
 
- 
-
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -74,6 +72,20 @@ form.addEventListener("submit", (e) => {
   form.reset();
   dialog.close();
 });
+
+// informacja o wpisania autora.
+const authorInput = document.getElementById("author");
+authorInput.addEventListener("blur", () => {
+  if(authorInput.value.trim()==="") {
+    authorInput.setCustomValidity("Author must be filled!");
+    
+  } else {
+    authorInput.setCustomValidity("");
+  }
+});
+
+
+
 
 function saveLibrary() {
   localStorage.setItem("library", JSON.stringify(myLibrary));
