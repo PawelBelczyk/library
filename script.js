@@ -85,7 +85,7 @@ authorInput.addEventListener("blur", () => {
 });
 const pagesInput = document.getElementById("pages");
 pagesInput.addEventListener("blur", ()=> {
-  if(Number(pagesInput.value) < 0) {
+  if(Number(pagesInput.value) < 1) {
     pagesInput.setCustomValidity("Pages must be > 0");
   }
   else {
